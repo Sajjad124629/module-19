@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 //  Read
 export async function GET() {
   try {
-    const alls = await prisma.post.findMany();
+    const alls = await prisma.product.findMany();
     return NextResponse.json({ data: alls });
   } catch (e) {
     console.log(e);
@@ -15,19 +15,18 @@ export async function GET() {
 // Insert
 export async function POST() {
   try {
-    const posts = await prisma.post.create({
+    const posts = await prisma.product.create({
       data: {
-        authorId: 1, 
-        title: "Your Post Title",
+        firstName: "Mahatab",
         metaTitle: "Your Meta Title",
-        slug: "your-post-slug",
-        summary: "A brief summary of your post",
-        published: 1, 
-        parentId : 1, 
-        content: "hello", 
+        slug: "your-category-slug",
+        summary: "your-category-slug",
+        price:100,
+        discount: 10,
+        userId: "1",
       },
     });
-    console.log(posts);
+
     return NextResponse.json({ data: posts });
   } catch (e) {
     console.log(e);
@@ -37,17 +36,17 @@ export async function POST() {
 //  Update
 export async function PUT() {
   try {
-    const updates = await prisma.post.update({
+    
+    const updates = await prisma.product.update({
       where: { id: 1 },
       data: {
-        authorId: 1, 
-        title: "Your Post Title",
+        firstName: "Mahatab",
         metaTitle: "Your Meta Title",
-        slug: "your-post-slug",
-        summary: "A brief summary of your post",
-        published: 1, 
-        parentId : 1, 
-        content: "hello", 
+        slug: "your-category-slug",
+        summary: "your-category-slug",
+        price:100,
+        discount: 10,
+        userId: "1",
       },
     });
     return NextResponse.json({ data: updates });
@@ -59,11 +58,12 @@ export async function PUT() {
 // Delete
 export async function DELETE() {
   try {
-    const deletes = await prisma.post.delete({
-      where: { id: 3 },
-    });
+    const deletes = await prisma.product.delete({
+       where: {id: 3}
+    })
     return NextResponse.json({ data: deletes });
-  } catch (e) {
-    console.log(e);
-  }
+}
+catch (e) {
+    console.log(e)
+}
 }

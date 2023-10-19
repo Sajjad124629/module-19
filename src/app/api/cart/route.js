@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 //  Read
 export async function GET() {
   try {
-    const alls = await prisma.user.findMany();
+    const alls = await prisma.cart.findMany();
     return NextResponse.json({ data: alls });
   } catch (e) {
     console.log(e);
@@ -15,15 +15,20 @@ export async function GET() {
 // Insert
 export async function POST() {
   try {
-    const posts = await prisma.user.create({
+    const posts = await prisma.cart.create({
       data: {
+        title: "title",
+        sessionId: "1",
+        token: "ajsdj1231212",
+        status: "1",
         firstName: "Mahatab",
         middleName: "Hossain",
         lastName: "Roni",
         mobile: "01918723",
         email: "email1sa2@gmail.com",
-        passwordHash: "sadhgs7261212",
-        admin: "1",
+        city: "khulna",
+        country: "Bangladesh",
+        userId: "1",
       },
     });
 
@@ -37,16 +42,21 @@ export async function POST() {
 export async function PUT() {
   try {
     
-    const updates = await prisma.user.update({
+    const updates = await prisma.cart.update({
       where: { id: 1 },
       data: {
+        title: "title",
+        sessionId: "1",
+        token: "ajsdj1231212",
+        status: "1",
         firstName: "Mahatab",
         middleName: "Hossain",
         lastName: "Roni",
         mobile: "01918723",
         email: "email1sa2@gmail.com",
-        passwordHash: "sadhgs7261212",
-        admin: "1",
+        city: "khulna",
+        country: "Bangladesh",
+        userId: "1",
       },
     });
     return NextResponse.json({ data: updates });
@@ -58,7 +68,7 @@ export async function PUT() {
 // Delete
 export async function DELETE() {
   try {
-    const deletes = await prisma.user.delete({
+    const deletes = await prisma.cart.delete({
        where: {id: 3}
     })
     return NextResponse.json({ data: deletes });

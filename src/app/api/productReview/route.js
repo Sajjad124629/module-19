@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 //  Read
 export async function GET() {
   try {
-    const alls = await prisma.post_tag.findMany();
+    const alls = await prisma.product_review.findMany();
     return NextResponse.json({ data: alls });
   } catch (e) {
     console.log(e);
@@ -15,14 +15,15 @@ export async function GET() {
 // Insert
 export async function POST() {
   try {
-    const posts = await prisma.post_tag.create({
+    const posts = await prisma.product_review.create({
       data: {
-        postId: 1, 
-        tagId : 1, 
-       
+        title: "Mahatab",
+        rating: "Your Meta Title",
+        content: "Your Meta Title",
+        productId: "1",
       },
     });
-    console.log(posts);
+
     return NextResponse.json({ data: posts });
   } catch (e) {
     console.log(e);
@@ -32,12 +33,14 @@ export async function POST() {
 //  Update
 export async function PUT() {
   try {
-    const updates = await prisma.post_tag.update({
+    
+    const updates = await prisma.product_review.update({
       where: { id: 1 },
       data: {
-        postId: 1, 
-        tagId : 1, 
-       
+        title: "Mahatab",
+        rating: "Your Meta Title",
+        content: "Your Meta Title",
+        productId: "1",
       },
     });
     return NextResponse.json({ data: updates });
@@ -49,11 +52,12 @@ export async function PUT() {
 // Delete
 export async function DELETE() {
   try {
-    const deletes = await prisma.post_tag.delete({
-      where: { id: 3 },
-    });
+    const deletes = await prisma.product_review.delete({
+       where: {id: 3}
+    })
     return NextResponse.json({ data: deletes });
-  } catch (e) {
-    console.log(e);
-  }
+}
+catch (e) {
+    console.log(e)
+}
 }

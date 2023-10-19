@@ -17,7 +17,6 @@ export async function POST() {
   try {
     const posts = await prisma.category.create({
       data: {
-        parentId: 1, 
         title: "Your Post Title",
         metaTitle: "Your Meta Title",
         slug: "your-category-slug",
@@ -37,7 +36,6 @@ export async function PUT() {
     const updates = await prisma.category.update({
       where: { id: 1 },
       data: {
-        parentId: 1, 
         title: "Your Post Title",
         metaTitle: "Your Meta Title",
         slug: "your-category-slug",
